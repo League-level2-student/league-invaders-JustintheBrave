@@ -47,9 +47,9 @@ public class GamePanel extends JPanel {
 		 g.setColor(Color.YELLOW);
 		 g.drawString("LEAGUE INVADERS", 25, 100);
 		 
-		 g.setFont(menu);
-		 g.drawString("Press ENTER to begin", 150, 400);
-		 g.drawString("Press SPACE for instructions", 120, 400);
+		 g.setFont(menuFont);
+		 g.drawString("Press ENTER to begin", 120, 350);
+		 g.drawString("Press SPACE for instructions", 100, 600);
 	 }
 	 public void drawGameState(Graphics g) { 
 		 g.setColor(Color.BLACK);
