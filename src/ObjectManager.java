@@ -1,8 +1,10 @@
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ObjectManager {
+public class ObjectManager implements ActionListener{
 	RocketShip rocket;
 	Random random = new Random();
 	ArrayList <Projectile> projectiles = new ArrayList <Projectile>();
@@ -57,6 +59,18 @@ public class ObjectManager {
 		}
 	}
 	
-	//ON STEP 5 
+	public void checkCollision(){
+		for (int i = 0; i < aliens.size(); i++) {
+			//ON STEP 5
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		addAlien();
+	}
+	
+	
 }
 
