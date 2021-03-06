@@ -31,15 +31,19 @@ public class RocketShip extends GameObject{
 	
 	 public void right() {
 	        x+=speed;
+	        super.update();
 	    }
 	 public void left() {
 	        x-=speed;
+	        super.update();
 	    }
 	 public void up() {
 	        y-=speed;
+	        super.update();
 	    }
 	 public void down() {
 	        y+=speed;
+	        super.update();
 	    }
 	 
 	 void loadImage(String imageFile) {

@@ -10,6 +10,9 @@ public class ObjectManager implements ActionListener{
 	ArrayList <Projectile> projectiles = new ArrayList <Projectile>();
 	ArrayList <Alien> aliens = new ArrayList <Alien>();
 	
+	int score = 0;
+	
+	
 	public ObjectManager(RocketShip rockett) {
 		this.rocket=rockett;
 	}
@@ -25,12 +28,15 @@ public class ObjectManager implements ActionListener{
 	public void update() {
 		for(int i=0; i<aliens.size(); i++) {
 			aliens.get(i).update();	
-			aliens.get(i).isActive = false;
 		}
 		
 		for (int i = 0; i < projectiles.size(); i++) {
 			projectiles.get(i).update();
 		}
+		
+		checkCollision();
+		purgeObjects();
+		
 	}
 	
 	void draw(Graphics g) {
@@ -45,7 +51,7 @@ public class ObjectManager implements ActionListener{
 		}
 	}
 	
-	public void purgeObject() {
+	public void purgeObjects() {
 		for (int i = 0; i < aliens.size(); i++) {
 			if(aliens.get(i).isActive==false) {
 				aliens.remove(i);
@@ -60,11 +66,27 @@ public class ObjectManager implements ActionListener{
 	}
 	
 	public void checkCollision(){
+		for (int e = 0; e < aliens.size(); e++) {
+			if(rocket.collisionBox.intersects(aliens.get(e).collisionBox)) {
+				rocket.isActive=false;
+				aliens.get(e).isActive=false;
+			}
+		}
 		for (int i = 0; i < aliens.size(); i++) {
-			//ON STEP 5
+			for (int j = 0; j < projectiles.size(); j++) {
+				if(projectiles.get(j).collisionBox.intersects(aliens.get(i).collisionBox)) {
+					projectiles.get(j).isActive=false;
+					aliens.get(i).isActive=false;
+					score++;
+				}
+			}
 		}
 	}
-
+	
+	public int getScore() {
+		return score;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
